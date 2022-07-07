@@ -15,7 +15,6 @@ bool __stdcall hkCreateMove(float flSampleTime, CUserCmd* cmd)
 
 
 	Vector aimAngles = Aim::Aimbot(cmd, localplayer);
-	Aim::RecoilControl(cmd, localplayer, aimAngles);
 
 	cmd->viewangles = aimAngles;
 

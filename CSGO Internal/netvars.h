@@ -2787,7 +2787,11 @@ namespace DT
 		static uintptr_t m_flHealthShotBoostExpirationTime = GetNetVar("DT_CSPlayer", "m_flHealthShotBoostExpirationTime");
 		static uintptr_t m_flLastExoJumpTime = GetNetVar("DT_CSPlayer", "m_flLastExoJumpTime");
 		static uintptr_t m_vecPlayerPatchEconIndices = GetNetVar("DT_CSPlayer", "m_vecPlayerPatchEconIndices");
+
+		// manually added
 		static uintptr_t m_vecViewOffset_0_ = GetNetVar("DT_CSPlayer", "m_vecViewOffset[0]");
+		static uintptr_t m_iShotsFired = GetNetVar("DT_CSPlayer", "m_iShotsFired");
+		static uintptr_t m_aimPunchAngle = GetNetVar("DT_CSPlayer", "m_aimPunchAngle");
 	}
 
 	namespace DT_CSNonLocalPlayerExclusive

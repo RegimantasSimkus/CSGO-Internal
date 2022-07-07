@@ -113,8 +113,8 @@ public:
 	NETVAR(GetOrigin, Vector, DT::DT_BaseEntity::m_vecOrigin);
 	NETVAR(GetTeam, int, DT::DT_BaseEntity::m_iTeamNum);
 	NETVAR(GetViewOffset, Vector, DT::DT_CSPlayer::m_vecViewOffset_0_);
-	NETVAR(GetPunchAngles, Vector, DT::DT_Local::m_aimPunchAngle);
-	NETVAR(GetShotsFired, int, DT::DT_CSLocalPlayerExclusive::m_iShotsFired);
+	NETVAR(GetPunchAngles, Vector, DT::DT_CSPlayer::m_aimPunchAngle);
+	NETVAR(GetShotsFired, int, DT::DT_CSPlayer::m_iShotsFired);
 	//bool IsDormant()
 	//{
 	//	typedef bool(__thiscall* tIsDormant)(void* pThis);

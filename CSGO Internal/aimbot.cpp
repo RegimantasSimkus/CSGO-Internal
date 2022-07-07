@@ -2,10 +2,14 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h> // getasynckeystate
+
+// return recoil control view
+#define RETRCV() { RecoilControl(cmd, localplayer, &cmd->viewangles); return cmd->viewangles; }
+
 Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 {
 	if (!(GetAsyncKeyState(VK_LMENU)))
-		return cmd->viewangles;
+		RETRCV();
 
 
 	int localTeam = localplayer->GetTeam();
@@ -48,7 +52,7 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 	}
 
 	if (!Target)
-		return cmd->viewangles;
+		RETRCV();
 
 	// where we shoot from :D
 	Vector localEyePos = localplayer->GetOrigin().Add(localplayer->GetViewOffset());
@@ -63,6 +67,8 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 	delta.x = pitch;
 	delta.y = yaw;
 	delta.z = 0;
+
+	RecoilControl(cmd, localplayer, &delta, true);
 
 	return delta;
 }

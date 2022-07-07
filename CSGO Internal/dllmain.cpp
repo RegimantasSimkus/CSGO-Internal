@@ -33,8 +33,8 @@ BOOL WINAPI MainThread(HMODULE hModule)
     std::cout << "m_flFlashDuration: " << DT::DT_CSPlayer::m_flFlashDuration << "\n"; // 66672   0x10470
     std::cout << "m_flFlashMaxAlpha: " << DT::DT_CSPlayer::m_flFlashMaxAlpha << "\n"; // 66668   0x1046C
 
-    std::cout << "rcs s" << DT::DT_CSLocalPlayerExclusive::m_iShotsFired << "\n";
-    std::cout << "rcs p" << DT::DT_Local::m_aimPunchAngle << "\n";
+    std::cout << "rcs s" << DT::DT_CSPlayer::m_iShotsFired << "\n";
+    std::cout << "rcs p" << DT::DT_CSPlayer::m_aimPunchAngle << "\n";
 
     std::cout << "localplyayer: " << I::IEntityList->GetClientEntity(I::IEngineClient->GetLocalPlayer()) << "\n";
 

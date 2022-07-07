@@ -7,8 +7,9 @@
 namespace Aim
 {
 	static C_BasePlayer* Target = nullptr;
+	static Vector RCSOffset;
 
 	extern Vector& Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer);
 	extern C_BasePlayer* GetBestTarget(CUserCmd* cmd, C_BasePlayer* localplayer);
-	extern void RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector& vec);
+	extern void RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector* vec, bool isAimbot = false);
 }
