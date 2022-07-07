@@ -11,5 +11,5 @@ namespace Aim
 
 	extern Vector& Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer);
 	extern C_BasePlayer* GetBestTarget(CUserCmd* cmd, C_BasePlayer* localplayer);
-	extern void RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector* vec, bool isAimbot = false);
+	extern void RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector& vec, bool isAimbot = false);
 }

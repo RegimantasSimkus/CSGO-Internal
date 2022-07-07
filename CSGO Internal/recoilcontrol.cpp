@@ -1,6 +1,6 @@
 #include "aim.h"
 
-void Aim::RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector* angles, bool isAimbot)
+void Aim::RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector& angles, bool isAimbot)
 {
 	static Vector prevPunch;
 
@@ -27,8 +27,8 @@ void Aim::RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector* angles
 	RCSOffset.x += offsetX;
 	RCSOffset.y += offsetY;
 
-	angles->x += isAimbot ? RCSOffset.x : offsetX;
-	angles->y += isAimbot ? RCSOffset.y : offsetY;
+	angles.x += isAimbot ? RCSOffset.x : offsetX;
+	angles.y += isAimbot ? RCSOffset.y : offsetY;
 
 	prevPunch = punch;
 }

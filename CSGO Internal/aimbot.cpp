@@ -4,7 +4,7 @@
 #include <Windows.h> // getasynckeystate
 
 // return recoil control view
-#define RETRCV() { RecoilControl(cmd, localplayer, &cmd->viewangles); return cmd->viewangles; }
+#define RETRCV() { RecoilControl(cmd, localplayer, cmd->viewangles); return cmd->viewangles; }
 
 Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 {
@@ -68,7 +68,7 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 	delta.y = yaw;
 	delta.z = 0;
 
-	RecoilControl(cmd, localplayer, &delta, true);
+	RecoilControl(cmd, localplayer, delta, true);
 
 	return delta;
 }
