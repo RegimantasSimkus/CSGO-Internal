@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{0db3e395-2b9d-4e37-b664-b80851594a11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hooking">
+      <UniqueIdentifier>{ef9acced-ec80-4992-b95d-6caba558a151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MinHook">
+      <UniqueIdentifier>{1cfb627d-74d9-4fc2-b00a-86ff28b26edb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MinHook\hde">
+      <UniqueIdentifier>{2de69014-0164-41ad-8369-ce792cf60626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hooking">
+      <UniqueIdentifier>{2ac3c753-6728-420b-80b9-160225ef3ad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hooks">
+      <UniqueIdentifier>{53ac9249-bfcd-4029-9080-094227ff6372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hooks">
+      <UniqueIdentifier>{6add251f-8452-40a4-8707-ab72309010de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\csgo">
+      <UniqueIdentifier>{79e58ca9-c9f9-4a55-bef7-7226c13f129c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sdk">
+      <UniqueIdentifier>{3e7efa4a-d058-4963-ba0f-b62c8442b8be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hacks">
+      <UniqueIdentifier>{c832a805-7c5a-42b8-912a-97aa9138eebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hacks">
+      <UniqueIdentifier>{cfa1717a-2a51-4268-b330-f674fce94973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hacks\esp">
+      <UniqueIdentifier>{49874c76-8a83-4399-a1d5-5ae6e8c9e11e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hacks\movement">
+      <UniqueIdentifier>{0f591c7d-da55-4e6a-b1c1-e070bb1dd486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hacks\aim">
+      <UniqueIdentifier>{969e85a6-09b5-4483-8528-f5283ed424fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{d4934c8f-c5ca-41f8-9734-508ee2b3a8b5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking.h">
+      <Filter>Header Files\hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\buffer.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\trampoline.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\hde\hde32.h">
+      <Filter>MinHook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\hde\hde64.h">
+      <Filter>MinHook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\hde\pstdint.h">
+      <Filter>MinHook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\hde\table32.h">
+      <Filter>MinHook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\hde\table64.h">
+      <Filter>MinHook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="hooks.h">
+      <Filter>Header Files\hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\MinHook.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="csgo.h">
+      <Filter>Header Files\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="interfaces.h">
+      <Filter>Header Files\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="IEngineTool.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlobalVarsBase.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="IPanel.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="IEngineVGui.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="ISurface.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="IVEngineClient.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDebugOverlay.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="C_BasePlayer.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="ICHLClient.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="usefulnetvars.txt">
+      <Filter>Header Files\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="macros.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="IClientEntityList.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="netvars.h">
+      <Filter>Header Files\csgo</Filter>
+    </ClInclude>
+    <ClInclude Include="PaintTraverse.h">
+      <Filter>Header Files\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateMove.h">
+      <Filter>Header Files\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="esp.h">
+      <Filter>Header Files\hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="movement.h">
+      <Filter>Header Files\hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserCmd.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="aim.h">
+      <Filter>Header Files\hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScene.h">
+      <Filter>Header Files\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx9.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files\hacks</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking.cpp">
+      <Filter>Source Files\hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="MinHook\trampoline.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="MinHook\hook.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="MinHook\buffer.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="MinHook\hde\hde32.c">
+      <Filter>MinHook\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="MinHook\hde\hde64.c">
+      <Filter>MinHook\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks.cpp">
+      <Filter>Source Files\hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="csgo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PaintTraverse.cpp">
+      <Filter>Source Files\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateMove.cpp">
+      <Filter>Source Files\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="fovcircle.cpp">
+      <Filter>Source Files\hacks\esp</Filter>
+    </ClCompile>
+    <ClCompile Include="playeresp.cpp">
+      <Filter>Source Files\hacks\esp</Filter>
+    </ClCompile>
+    <ClCompile Include="bunnyhop.cpp">
+      <Filter>Source Files\hacks\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="aimbot.cpp">
+      <Filter>Source Files\hacks\aim</Filter>
+    </ClCompile>
+    <ClCompile Include="EndScene.cpp">
+      <Filter>Source Files\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx9.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source Files\hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="recoilcontrol.cpp">
+      <Filter>Source Files\hacks\aim</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="netvars.txt">
+      <Filter>Header Files\csgo</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

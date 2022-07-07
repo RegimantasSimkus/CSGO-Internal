@@ -1,0 +1,93 @@
+DT_BasePlayer->m_iBonusProgress
+DT_BasePlayer->m_iBonusChallenge
+DT_BasePlayer->m_flMaxspeed
+DT_BasePlayer->m_fFlags
+DT_BasePlayer->m_iObserverMode
+DT_BasePlayer->m_bActiveCameraMan
+DT_BasePlayer->m_bCameraManXRay
+DT_BasePlayer->m_bCameraManOverview
+DT_BasePlayer->m_bCameraManScoreBoard
+DT_BasePlayer->m_uCameraManGraphs
+DT_BasePlayer->m_iDeathPostEffect
+DT_BasePlayer->m_hObserverTarget
+DT_BasePlayer->m_hViewModel[0]
+DT_BasePlayer->m_hViewModel
+DT_BasePlayer->m_iCoachingTeam
+DT_BasePlayer->m_szLastPlaceName
+DT_BasePlayer->m_vecLadderNormal
+DT_BasePlayer->m_ladderSurfaceProps
+DT_BasePlayer->m_ubEFNoInterpParity
+DT_BasePlayer->m_hPostProcessCtrl
+DT_BasePlayer->m_hColorCorrectionCtrl
+DT_BasePlayer->m_PlayerFog.m_hCtrl
+DT_BasePlayer->m_vphysicsCollisionState
+DT_BasePlayer->m_hViewEntity
+DT_BasePlayer->m_bShouldDrawPlayerWhileUsingViewEntity
+DT_BasePlayer->m_flDuckAmount
+DT_BasePlayer->m_flDuckSpeed
+DT_BasePlayer->m_nWaterLevel
+DT_BasePlayer -> pl
+DT_BasePlayer -> m_iFOV
+DT_BasePlayer -> m_iFOVStart
+DT_BasePlayer -> m_flFOVTime
+DT_BasePlayer -> m_iDefaultFOV
+DT_BasePlayer -> m_hZoomOwner
+DT_BasePlayer -> m_afPhysicsFlags
+DT_BasePlayer -> m_hVehicle
+DT_BasePlayer -> m_hUseEntity
+DT_BasePlayer -> m_hGroundEntity
+DT_BasePlayer -> m_iHealth
+DT_BasePlayer -> m_lifeState
+DT_BasePlayer -> m_iAmmo
+DT_PlayerState -> deadflag
+DT_BaseCombatCharacter -> m_LastHitGroup
+DT_BaseCombatCharacter -> m_hActiveWeapon
+DT_BaseCombatCharacter -> m_flTimeOfLastInjury
+DT_BaseCombatCharacter -> m_nRelativeDirectionOfLastInjury
+DT_BaseCombatCharacter -> m_hMyWeapons
+DT_BaseEntity -> m_iTextureFrameIndex
+DT_BaseEntity -> m_bSimulatedEveryTick
+DT_BaseEntity -> m_bAnimatedEveryTick
+DT_BaseEntity -> m_bAlternateSorting
+DT_BaseEntity -> m_bSpotted
+DT_BaseEntity -> m_bSpottedBy
+DT_BasePlayer -> baseclass
+DT_BaseCombatCharacter -> baseclass
+DT_BaseFlex -> baseclass
+DT_BaseAnimatingOverlay -> baseclass
+DT_BaseAnimating -> baseclass
+DT_BaseEntity -> AnimTimeMustBeFirst
+DT_AnimTimeMustBeFirst -> m_flAnimTime
+DT_BaseEntity -> m_flSimulationTime
+DT_BaseEntity -> m_cellbits
+DT_BaseEntity -> m_cellX
+DT_BaseEntity -> m_cellY
+DT_BaseEntity -> m_cellZ
+DT_BaseEntity -> m_vecOrigin
+DT_BaseEntity -> m_angRotation
+DT_BaseEntity -> m_nModelIndex
+DT_BaseEntity -> m_fEffects
+DT_BaseEntity -> m_nRenderMode
+DT_BaseEntity -> m_nRenderFX
+DT_BaseEntity -> m_clrRender
+DT_BaseEntity -> m_iTeamNum
+DT_BaseEntity -> m_iPendingTeamNum
+DT_BaseEntity -> m_CollisionGroup
+DT_BaseEntity -> m_flElasticity
+DT_BaseEntity -> m_flShadowCastDistance
+DT_BaseEntity -> m_hOwnerEntity
+DT_BaseEntity -> m_hEffectEntity
+DT_BaseEntity -> moveparent
+DT_BaseEntity -> m_iParentAttachment
+DT_BaseEntity -> m_iName
+DT_BaseEntity -> movetype
+DT_BaseEntity -> movecollide
+DT_BaseEntity -> m_Collision
+DT_CollisionProperty -> m_vecMins
+DT_CollisionProperty -> m_vecMaxs
+DT_CollisionProperty -> m_nSolidType
+DT_CollisionProperty -> m_usSolidFlags
+DT_CollisionProperty -> m_nSurroundType
+DT_CollisionProperty -> m_triggerBloat
+DT_CollisionProperty -> m_vecSpecifiedSurroundingMins
+DT_CollisionProperty -> m_vecSpecifiedSurroundingMaxs
