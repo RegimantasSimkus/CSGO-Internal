@@ -2,6 +2,10 @@
 #include "EndScene.h"
 #include <vector>
 #include <string>
+#include "settings.h"
+
+// For GetFOVRadius
+#include "esp.h"
 
 void Colors()
 {
@@ -20,6 +24,10 @@ void Colors()
     style.Colors[ImGuiCol_FrameBgActive] = ImColor(37, 37, 37);
     style.Colors[ImGuiCol_FrameBgHovered] = ImColor(41, 41, 41);
     style.Colors[ImGuiCol_FrameBg] = ImColor(37, 37, 37);
+    style.Colors[ImGuiCol_SliderGrab] = ImColor(95, 30, 200);
+    style.Colors[ImGuiCol_SliderGrabActive] = ImColor(95, 30, 200);
+
+    style.GrabRounding = 2;
     style.WindowRounding = 6;
     style.WindowMinSize = ImVec2(515, 320);
     style.FrameRounding = 4;
@@ -55,26 +63,25 @@ void DrawMenu()
     }
 
     static PAGE activePage = PAGE_AIM;
-
-    ImGui::Begin("Hello, world!", 0, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);                          // Create a window called "Hello, world!" and append into it.
+    ImGui::Begin("##Frame", 0, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);                          // Create a window called "Hello, world!" and append into it.
 
     ImGui::PushStyleColor(ImGuiCol_Border, ImColor(0, 0, 0, 255).Value);
 
-    ImGui::Columns(2, 0, true);
-    ImGui::SetColumnOffset(1, 165);
+    ImGui::Columns(2, 0, false);
+    ImGui::SetColumnWidth(0, 165);
     ImGui::BeginChild("##Sidebar");
     {
         ImGui::SetCursorPosX(6);
         ImGui::SetCursorPosY(4);
 
-        float width = ImGui::GetContentRegionAvail().x;
-        float textWidth = ImGui::CalcTextSize("Bullyware v1.0").x;
+        int width = ImGui::GetContentRegionAvail().x;
+        int textWidth = ImGui::CalcTextSize("Bullyware v1.0").x;
         ImGui::SetCursorPosX(width / 2 - textWidth / 2);
         ImGui::Text("Bullyware v1.0");
         ImGui::SetCursorPosY(26);
         ImGui::Separator();
 
-        ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2(24, 0));
+        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(6, 0));
         for (unsigned int i = 0; i < pages.size(); i++)
         {
             game_data page = pages.at(i);
@@ -102,32 +109,24 @@ void DrawMenu()
         {
         case PAGE_AIM:
         {
-
-            ImGui::Columns(2, 0, false);
-            ImGui::BeginChild("##Aim_Left");
+            ImGui::Checkbox("Enable", &Settings::Aim::Enabled);
+            ImGui::LabelText("##FOVLabel", "FOV");
+            if (ImGui::SliderFloat("##FOV", &Settings::Aim::FOV, 0, 180))
             {
-                static bool aimbotEnable = false;
-                ImGui::Checkbox("Enabled", &aimbotEnable);
+                Settings::Aim::FOVLength = (ESP::GetFOVRadius(Settings::Aim::FOV) * ESP::GetFOVRadius(Settings::Aim::FOV));
             }
-            ImGui::EndChild();
-
-            ImGui::NextColumn();
-
-            ImGui::BeginChild("##Aim_Right");
-            {
-
-            }
-            ImGui::EndChild();
-
+            ImGui::Text("%f", Settings::Aim::FOVLength);
             break;
         }
-        }
-        ImGui::PopStyleColor();
+        case PAGE_ESP:
+        {
 
+        }
+        }
+
+        ImGui::PopStyleColor();
     }
     ImGui::EndChild();
-
     ImGui::PopStyleColor();
-
     ImGui::End();
 }
