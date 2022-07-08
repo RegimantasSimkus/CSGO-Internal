@@ -1,4 +1,5 @@
 #include "aim.h"
+#include "settings.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h> // getasynckeystate
@@ -8,16 +9,18 @@
 
 Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 {
-	if (!(GetAsyncKeyState(VK_LMENU)))
+	if (!Settings::Aim::Enabled || !(GetAsyncKeyState(VK_LMENU)))
 		RETRCV();
 
-
-	int localTeam = localplayer->GetTeam();
+	Target = nullptr;
 
 	int scrw, scrh;
 	I::IEngineClient->GetScreenSize(scrw, scrh);
 
-	Target = nullptr;
+	float cx = scrw / 2.f;
+	float cy = scrh / 2.f;
+
+	int localTeam = localplayer->GetTeam();
 	float lowestHypot = 0.f;
 	Vector targetHeadPos;
 	Vector targetHeadScreenPos;
@@ -38,13 +41,19 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 		if (I::IDebugOverlay->ScreenPosition(headPos, screenPos))
 			continue;
 
-		float diffX = screenPos.x - ((float)scrw / 2);
-		float diffY = screenPos.y - ((float)scrh / 2);
 
-		float hypotSqr = (diffX * diffX) + (diffY * diffY);
-		if (!Target || hypotSqr < lowestHypot)
+
+		float diffX = screenPos.x - cx;
+		float diffY = screenPos.y - cy;
+
+		float hypotenuse = ((diffX * diffX) + (diffY * diffY));
+		
+		if (
+			(Settings::Aim::FOV == 0.f || hypotenuse < Settings::Aim::FOVLength) &&
+			(!Target || hypotenuse < lowestHypot)
+			)
 		{
-			lowestHypot = hypotSqr;
+			lowestHypot = hypotenuse;
 			Target = player;
 			targetHeadPos = headPos;
 			targetHeadScreenPos = screenPos;
