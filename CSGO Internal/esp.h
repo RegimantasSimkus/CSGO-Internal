@@ -5,8 +5,8 @@
 
 namespace ESP
 {
-	static int scrw = 0;
-	static int scrh = 0;
+	extern int scrw;
+	extern int scrh;
 
 	static Color COLOR_RED = Color(255, 0, 0, 255);
 	static Color COLOR_GREEN = Color(0, 255, 0, 255);
@@ -16,4 +16,6 @@ namespace ESP
 
 	extern void DrawFOVCircle(C_BasePlayer* localplayer);
 	extern void DrawPlayer(C_BasePlayer* player, C_BasePlayer* localplayer, player_info_t playerinfo);
+	extern float GetFOVRadius(float& fov, C_BasePlayer* localplayer = nullptr);
+	extern void DrawFOVHelp(C_BasePlayer* ply, C_BasePlayer* localplayer);
 }

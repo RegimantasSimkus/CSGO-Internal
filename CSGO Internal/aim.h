@@ -4,10 +4,12 @@
 #include "csgo.h"
 #include "CUserCmd.h"
 
+class Vector;
+
 namespace Aim
 {
-	static C_BasePlayer* Target = nullptr;
-	static Vector RCSOffset;
+	extern C_BasePlayer* Target;
+	extern Vector RCSOffset;
 
 	extern Vector& Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer);
 	extern C_BasePlayer* GetBestTarget(CUserCmd* cmd, C_BasePlayer* localplayer);
