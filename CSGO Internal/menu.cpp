@@ -113,9 +113,11 @@ void DrawMenu()
             ImGui::LabelText("##FOVLabel", "FOV");
             if (ImGui::SliderFloat("##FOV", &Settings::Aim::FOV, 0, 180))
             {
-                Settings::Aim::FOVLength = (ESP::GetFOVRadius(Settings::Aim::FOV) * ESP::GetFOVRadius(Settings::Aim::FOV));
+                float rad = ESP::GetFOVRadius(Settings::Aim::FOV);
+                Settings::Aim::FOVLength = rad * rad;
             }
             ImGui::Text("%f", Settings::Aim::FOVLength);
+            ImGui::Text("%f", Settings::Aim::FOV);
             break;
         }
         case PAGE_ESP:

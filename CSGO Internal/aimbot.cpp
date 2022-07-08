@@ -47,7 +47,7 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 		float diffY = screenPos.y - cy;
 
 		float hypotenuse = ((diffX * diffX) + (diffY * diffY));
-		
+
 		if (
 			(Settings::Aim::FOV == 0.f || hypotenuse < Settings::Aim::FOVLength) &&
 			(!Target || hypotenuse < lowestHypot)
@@ -65,7 +65,7 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 
 	// where we shoot from :D
 	Vector localEyePos = localplayer->GetOrigin().Add(localplayer->GetViewOffset());
-	
+
 	Vector delta = { targetHeadPos.x - localEyePos.x, targetHeadPos.y - localEyePos.y, targetHeadPos.z - localEyePos.z };
 
 	float hypot = sqrt((delta.x * delta.x) + (delta.y * delta.y) + (delta.z * delta.z));

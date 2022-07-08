@@ -10,5 +10,5 @@ float ESP::GetFOVRadius(float& fov, C_BasePlayer* localplayer)
 
 	float segSize = ((float)scrw / (float)localplayer->GetFOV());
 	
-	return (fov * segSize)/2;
+	return (fov * segSize)/2.f;
 }

@@ -8,16 +8,9 @@ void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
 	if (!(panel == I::IEngineVGUI->GetPanel(PANEL_TOOLS) && I::IEngineTool->m_bIsInGame))
 		return;
 
-	int scrw, scrh;
-	I::ISurface->GetScreenSize(&scrw, &scrh);
+	I::IEngineClient->GetScreenSize(ESP::scrw, ESP::scrh);
 
-	ESP::scrw = scrw;
-	ESP::scrh = scrh;
-
-	int localIndex = I::IEngineClient->GetLocalPlayer();
-	if (!localIndex) return;
-
-	C_BasePlayer* localplayer = I::IEntityList->GetClientEntity(localIndex);
+	C_BasePlayer* localplayer = I::IEntityList->GetClientEntity(I::IEngineClient->GetLocalPlayer());
 	if (!localplayer) return;
 
 	player_info_t playerinfo;
@@ -27,7 +20,7 @@ void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
 		if (!player)
 			continue;
 
-		if (i == localIndex)
+		if (player == localplayer)
 			continue;
 
 		if (player->IsDormant())
@@ -39,7 +32,8 @@ void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
 		if (!(I::IEngineClient->GetPlayerInfo(i, &playerinfo)))
 			continue;
 
-		ESP::DrawPlayer(player, localplayer, playerinfo);
+		//ESP::DrawPlayer(player, localplayer, playerinfo);
+		ESP::DrawFOVHelp(player, localplayer);
 	}
 	
 	ESP::DrawFOVCircle(localplayer);

@@ -198,6 +198,9 @@
     <ClInclude Include="menu.h">
       <Filter>Header Files\hacks</Filter>
     </ClInclude>
+    <ClInclude Include="settings.h">
+      <Filter>Source Files\hacks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -274,6 +277,18 @@
     </ClCompile>
     <ClCompile Include="recoilcontrol.cpp">
       <Filter>Source Files\hacks\aim</Filter>
+    </ClCompile>
+    <ClCompile Include="fovhelp.cpp">
+      <Filter>Source Files\hacks\esp</Filter>
+    </ClCompile>
+    <ClCompile Include="hacks.cpp">
+      <Filter>Source Files\hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="settings.cpp">
+      <Filter>Source Files\hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="getfovradius.cpp">
+      <Filter>Source Files\hacks\esp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
