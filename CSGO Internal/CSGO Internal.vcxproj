@@ -197,7 +197,6 @@
     <ClInclude Include="movement.h" />
     <ClInclude Include="netvars.h" />
     <ClInclude Include="PaintTraverse.h" />
-    <ClInclude Include="settings.h" />
     <ClInclude Include="usefulnetvars.txt" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector.h" />
@@ -210,10 +209,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="fovcircle.cpp" />
-    <ClCompile Include="fovhelp.cpp" />
-    <ClCompile Include="getfovradius.cpp" />
     <ClCompile Include="globals.cpp" />
-    <ClCompile Include="hacks.cpp" />
     <ClCompile Include="hooking.cpp" />
     <ClCompile Include="hooks.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
@@ -231,7 +227,6 @@
     <ClCompile Include="PaintTraverse.cpp" />
     <ClCompile Include="playeresp.cpp" />
     <ClCompile Include="recoilcontrol.cpp" />
-    <ClCompile Include="settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="netvars.txt" />

@@ -1,6 +1,5 @@
 #include "PaintTraverse.h"
 #include "esp.h"
-#include "settings.h"
 
 tPaintTraverse oPaintTraverse = 0;
 void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
@@ -9,7 +8,11 @@ void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
 	if (!(panel == I::IEngineVGUI->GetPanel(PANEL_TOOLS) && I::IEngineTool->m_bIsInGame))
 		return;
 
-	I::IEngineClient->GetScreenSize(ESP::scrw, ESP::scrh);
+	int scrw, scrh;
+	I::ISurface->GetScreenSize(&scrw, &scrh);
+
+	ESP::scrw = scrw;
+	ESP::scrh = scrh;
 
 	int localIndex = I::IEngineClient->GetLocalPlayer();
 	if (!localIndex) return;
@@ -36,8 +39,6 @@ void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
 		if (!(I::IEngineClient->GetPlayerInfo(i, &playerinfo)))
 			continue;
 
-
-		//ESP::DrawFOVHelp(player, localplayer);
 		ESP::DrawPlayer(player, localplayer, playerinfo);
 	}
 	
