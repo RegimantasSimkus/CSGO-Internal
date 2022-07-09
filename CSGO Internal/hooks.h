@@ -8,6 +8,7 @@
 #include "PaintTraverse.h"
 #include "CreateMove.h"
 #include "EndScene.h"
+#include "OverrideView.h"
 
 class Hooks
 {

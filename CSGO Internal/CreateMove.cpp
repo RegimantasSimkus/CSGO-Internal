@@ -13,8 +13,8 @@ bool __stdcall hkCreateMove(float flSampleTime, CUserCmd* cmd)
 
 	Movement::BunnyHop(cmd, localplayer);
 
-
 	Vector aimAngles = Aim::Aimbot(cmd, localplayer);
+	aimAngles.Normalize();
 
 	cmd->viewangles = aimAngles;
 

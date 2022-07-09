@@ -27,17 +27,6 @@ BOOL WINAPI MainThread(HMODULE hModule)
     g_hWnd = FindWindowA(NULL, "Counter-Strike: Global Offensive - Direct3D 9");
     Sleep(5);
 
-
-    std::cout << "g_hWnd: " << g_hWnd << "\n";
-
-    std::cout << "m_flFlashDuration: " << DT::DT_CSPlayer::m_flFlashDuration << "\n"; // 66672   0x10470
-    std::cout << "m_flFlashMaxAlpha: " << DT::DT_CSPlayer::m_flFlashMaxAlpha << "\n"; // 66668   0x1046C
-
-    std::cout << "rcs s" << DT::DT_CSPlayer::m_iShotsFired << "\n";
-    std::cout << "rcs p" << DT::DT_CSPlayer::m_aimPunchAngle << "\n";
-
-    std::cout << "localplyayer: " << I::IEntityList->GetClientEntity(I::IEngineClient->GetLocalPlayer()) << "\n";
-
     g_Hooks = new Hooks();
 
     VMTHookManager* test = new VMTHookManager(*(void***)I::CHLClient);
@@ -52,6 +41,7 @@ BOOL WINAPI MainThread(HMODULE hModule)
 
 	VMTHookManager* ClientModeShared = new VMTHookManager(*(void***)I::ClientModeShared);
 	oCreateMove = ClientModeShared->Hook<tCreateMove>(reinterpret_cast<PVOID>(&hkCreateMove), 24);
+    oOverrideView = ClientModeShared->Hook<tOverrideView>(reinterpret_cast<PVOID>(&hkOverrideView), 18);
 
 	VMTHookManager* IPanel = new VMTHookManager(*(void***)I::IPanel);
 	oPaintTraverse = IPanel->Hook<tPaintTraverse>(reinterpret_cast<PVOID>(&hkPaintTraverse), 41);
@@ -62,6 +52,10 @@ BOOL WINAPI MainThread(HMODULE hModule)
     oEndScene = ShaderBaseClass->Hook<tEndScene>(reinterpret_cast<PVOID>(&hkEndScene), 42);
 
     std::cout << "oEndScene: " << oEndScene << "\n";
+
+    void* drawText = (*(void***)(void*)I::ISurface)[29];
+
+    std::cout << "drawtext: " << drawText << "\n";
 
     MH_EnableHook(MH_ALL_HOOKS);
 

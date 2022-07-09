@@ -44,5 +44,8 @@ void ESP::DrawPlayer(C_BasePlayer* player, C_BasePlayer* localplayer, player_inf
 	I::ISurface->DrawLine(right, bottom, left, bottom);
 	I::ISurface->DrawLine(left, bottom, left, top);
 
-	I::ISurface->DrawPrintText(playerinfo.name, feetScreenPos.x, feetScreenPos.y, 293, col);
+
+	int textWidth, textHeight;
+	I::ISurface->GetTextSize(293, playerinfo.name, textWidth, textHeight);
+	I::ISurface->DrawPrintText(playerinfo.name, left + (((right - left)/2) - textWidth/2), feetScreenPos.y, 293, col);
 }

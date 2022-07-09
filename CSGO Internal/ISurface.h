@@ -114,7 +114,7 @@ public:
 	virtual void Func76();
 	virtual void Func77();
 	virtual void Func78();
-	virtual void Func79();
+	virtual void GetTextSizeEx(DWORD font, const wchar_t* text, int& width, int& height);
 	virtual void Func80();
 	virtual void Func81();
 	virtual void Func82();
@@ -191,6 +191,22 @@ public:
 		SetTextPos(x, y);
 		DrawPrintTextEx(wcstring, convertedChars);
 
+		delete[] wcstring;
+	}
+
+	const void GetTextSize(DWORD font, const char* text, int& width, int& height)
+	{
+		size_t newsize = strlen(text) + 1;
+		wchar_t* wcstring = new wchar_t[newsize];
+
+		// Convert char* string to a wchar_t* string.
+		size_t convertedChars = 0;
+		mbstowcs_s(&convertedChars, wcstring, newsize, text, _TRUNCATE);
+
+		typedef void(__thiscall* tGetTextSize)(void* pThis, DWORD font, const wchar_t* text, int& wide, int& height);
+		tGetTextSize fnGetTextSize = (tGetTextSize)(*(void***)(this))[79];
+
+		fnGetTextSize(this, font, wcstring, width, height);
 		delete[] wcstring;
 	}
 };

@@ -1,6 +1,5 @@
 #pragma once
 #include "esp.h"
-#include "settings.h"
 
 void ESP::DrawFOVCircle(C_BasePlayer* localplayer)
 {

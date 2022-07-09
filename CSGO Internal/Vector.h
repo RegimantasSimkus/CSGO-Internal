@@ -77,4 +77,18 @@ public:
 		z += vec.z;
 		return *this;
 	}
+
+	Vector& Normalize()
+	{
+		if (x >= 90.f)
+			x = 89.f;
+		if (x <= -90.f)
+			x = -89.f;
+
+		if (y >= 180.f)
+			y = 179.f;
+		if (y <= -180.f)
+			y = -179.f;
+		return *this;
+	}
 };

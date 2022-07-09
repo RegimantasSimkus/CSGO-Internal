@@ -5,7 +5,7 @@ tPaintTraverse oPaintTraverse = 0;
 void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
 {
 	oPaintTraverse(I::IPanel, panel, forcerepaint, allowforce);
-	if (!(panel == I::IEngineVGUI->GetPanel(PANEL_TOOLS) && I::IEngineTool->m_bIsInGame))
+	if (!Settings::ESP::Enabled || !(panel == I::IEngineVGUI->GetPanel(PANEL_TOOLS) && I::IEngineTool->m_bIsInGame))
 		return;
 
 	I::IEngineClient->GetScreenSize(ESP::scrw, ESP::scrh);
@@ -32,8 +32,7 @@ void __stdcall hkPaintTraverse(void* panel, bool forcerepaint, bool allowforce)
 		if (!(I::IEngineClient->GetPlayerInfo(i, &playerinfo)))
 			continue;
 
-		//ESP::DrawPlayer(player, localplayer, playerinfo);
-		ESP::DrawFOVHelp(player, localplayer);
+		ESP::DrawPlayer(player, localplayer, playerinfo);
 	}
 	
 	ESP::DrawFOVCircle(localplayer);

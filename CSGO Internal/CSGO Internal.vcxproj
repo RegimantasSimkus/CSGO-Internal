@@ -155,8 +155,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="aim.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="CGlobalVarsBase.h" />
     <ClInclude Include="CreateMove.h" />
+    <ClInclude Include="CSetupView.h" />
     <ClInclude Include="CUserCmd.h" />
     <ClInclude Include="EndScene.h" />
     <ClInclude Include="esp.h" />
@@ -196,6 +198,7 @@
     <ClInclude Include="MinHook\trampoline.h" />
     <ClInclude Include="movement.h" />
     <ClInclude Include="netvars.h" />
+    <ClInclude Include="OverrideView.h" />
     <ClInclude Include="PaintTraverse.h" />
     <ClInclude Include="settings.h" />
     <ClInclude Include="usefulnetvars.txt" />
@@ -205,6 +208,7 @@
   <ItemGroup>
     <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="bunnyhop.cpp" />
+    <ClCompile Include="camera_fov.cpp" />
     <ClCompile Include="CreateMove.cpp" />
     <ClCompile Include="csgo.cpp" />
     <ClCompile Include="dllmain.cpp" />
@@ -228,6 +232,7 @@
     <ClCompile Include="MinHook\hde\hde64.c" />
     <ClCompile Include="MinHook\hook.c" />
     <ClCompile Include="MinHook\trampoline.c" />
+    <ClCompile Include="OverrideView.cpp" />
     <ClCompile Include="PaintTraverse.cpp" />
     <ClCompile Include="playeresp.cpp" />
     <ClCompile Include="recoilcontrol.cpp" />

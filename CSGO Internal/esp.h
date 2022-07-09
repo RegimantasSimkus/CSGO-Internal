@@ -2,6 +2,7 @@
 #include "interfaces.h"
 #include "C_BasePlayer.h"
 #include "csgo.h"
+#include "settings.h"
 
 namespace ESP
 {
@@ -14,8 +15,9 @@ namespace ESP
 	static Color COLOR_WHITE = Color(255, 255, 255, 255);
 	static Color COLOR_BLACK = Color(0, 0, 0, 255);
 
+	extern float GetFOVRadius(float& fov, C_BasePlayer* localplayer = nullptr);
+	
 	extern void DrawFOVCircle(C_BasePlayer* localplayer);
 	extern void DrawPlayer(C_BasePlayer* player, C_BasePlayer* localplayer, player_info_t playerinfo);
-	extern float GetFOVRadius(float& fov, C_BasePlayer* localplayer = nullptr);
 	extern void DrawFOVHelp(C_BasePlayer* ply, C_BasePlayer* localplayer);
 }

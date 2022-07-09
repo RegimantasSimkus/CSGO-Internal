@@ -58,6 +58,9 @@
     <Filter Include="ImGui">
       <UniqueIdentifier>{d4934c8f-c5ca-41f8-9734-508ee2b3a8b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\hacks\camera">
+      <UniqueIdentifier>{22444823-bbfb-4aa4-87c5-fe9bec1137bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -201,6 +204,15 @@
     <ClInclude Include="settings.h">
       <Filter>Source Files\hacks</Filter>
     </ClInclude>
+    <ClInclude Include="OverrideView.h">
+      <Filter>Header Files\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetupView.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files\hacks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -289,6 +301,12 @@
     </ClCompile>
     <ClCompile Include="getfovradius.cpp">
       <Filter>Source Files\hacks\esp</Filter>
+    </ClCompile>
+    <ClCompile Include="OverrideView.cpp">
+      <Filter>Source Files\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="camera_fov.cpp">
+      <Filter>Source Files\hacks\camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

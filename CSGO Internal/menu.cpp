@@ -37,7 +37,8 @@ enum PAGE
 {
     PAGE_AIM,
     PAGE_ESP,
-    PAGE_MOVEMENT
+    PAGE_MOVEMENT,
+    PAGE_CAMERA
 };
 
 struct game_data
@@ -49,7 +50,8 @@ struct game_data
 std::vector<game_data> pages = {
     {"Aim", PAGE_AIM},
     {"ESP", PAGE_ESP},
-    {"Movement", PAGE_MOVEMENT}
+    {"Movement", PAGE_MOVEMENT},
+    {"Camera", PAGE_CAMERA}
 };
 
 bool initialized = false;
@@ -116,13 +118,19 @@ void DrawMenu()
                 float rad = ESP::GetFOVRadius(Settings::Aim::FOV);
                 Settings::Aim::FOVLength = rad * rad;
             }
-            ImGui::Text("%f", Settings::Aim::FOVLength);
-            ImGui::Text("%f", Settings::Aim::FOV);
             break;
         }
         case PAGE_ESP:
         {
-
+            ImGui::Checkbox("Enable", &Settings::ESP::Enabled);
+            break;
+        }
+        case PAGE_CAMERA:
+        {
+            ImGui::Checkbox("Enable", &Settings::Camera::Enabled);
+            ImGui::LabelText("##FOVLabel", "FOV");
+            ImGui::SliderFloat("##FOV", &Settings::Camera::FOV, 1.f, 170.f);
+            break;
         }
         }
 
