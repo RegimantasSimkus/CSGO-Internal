@@ -8,6 +8,8 @@ int __fastcall hkOverrideView(void* pThis, void* _, CViewSetup* view)
 	// calling this first to ensure that our variables are what is used
 	// not sure if there are any downsides to this though
 	int ret = oOverrideView(pThis, view); 
+	if (!Settings::Camera::Enabled)
+		return ret;
 
 	// sets the FOV
 	//*(float*)((uintptr_t)view + 0xB0) = 120.f;
