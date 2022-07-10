@@ -1214,9 +1214,9 @@ public:
 	virtual bool				IsStreaming(CAudioSource* pAudioSource) const = 0;
 
 	// Copy current view orientation into va
-	virtual void				GetViewAngles(void*& va) = 0;
+	virtual void				GetViewAngles(Vector& va) = 0;
 	// Set current view orientation from va
-	virtual void				SetViewAngles(void*& va) = 0;
+	virtual void				SetViewAngles(Vector& va) = 0;
 
 	// Retrieve the current game's maxclients setting
 	virtual int					GetMaxClients(void) = 0;
@@ -1269,7 +1269,7 @@ public:
 	virtual const char* GetGameDirectory(void) = 0;
 
 	// Get access to the world to screen transformation matrix
-	virtual const VMatrix& WorldToScreenMatrix() = 0;
+	virtual VMatrix& WorldToScreenMatrix() = 0;
 
 	// Get the matrix to move a point from world space into view space
 	// (translate and rotate so the camera is at the origin looking down X).
