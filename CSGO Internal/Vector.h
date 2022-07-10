@@ -2,7 +2,7 @@
 #include <math.h>
 
 #define PI 3.141592653589793238
-#define RAD(x) x*(180/PI)
+#define RAD(x) (x*PI)/180
 
 class Vector
 {
@@ -31,10 +31,17 @@ public:
 
 	inline Vector operator+(const Vector& vec)
 	{
-		x += vec.x;
-		y += vec.y;
-		z += vec.z;
-		return *this;
+		return { x + vec.x, y + vec.y, z + vec.z };
+	}
+
+	inline Vector operator-(const Vector& vec)
+	{
+		return { x - vec.x, y - vec.y, z - vec.z };
+	}
+
+	inline Vector operator/(const float f)
+	{
+		return { x / f, y / f, z / f };
 	}
 
 	bool IsZero()
@@ -58,14 +65,16 @@ public:
 
 	Vector& Angle()
 	{
+
 		float hypot = sqrt((x * x) + (y * y) + (z * z));
+		float pitch = -asin(z / hypot) * (180 / PI);
+		float yaw = atan2(y, x) * (180 / PI);
 
-		float pitch = -asin(z / hypot) * (180.f / PI);
-		float yaw = atan2(y, x) * (180.f / PI);
-
+		// using the delta structure to prevent having to create a new vector
 		x = pitch;
 		y = yaw;
 		z = 0;
+
 
 		return *this;
 	}
@@ -90,5 +99,17 @@ public:
 		if (y <= -180.f)
 			y = -179.f;
 		return *this;
+	}
+
+	float Distance(const Vector& vec)
+	{
+		Vector delta = *this - vec;
+		return delta.x * delta.x + delta.y * delta.y + delta.z * delta.z;
+	}
+
+	float Distance2D(const Vector& vec)
+	{
+		Vector delta = *this - vec;
+		return sqrt(delta.x * delta.x + delta.y * delta.y);
 	}
 };
