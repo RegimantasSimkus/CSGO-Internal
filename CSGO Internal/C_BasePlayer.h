@@ -57,27 +57,33 @@ public:
 	virtual void Func9();
 };
 
+class C_BasePlayer;
+
+class CCollisionProperty
+{
+private:
+	// uncertain what this points to
+	void** vTable;
+
+public:
+	C_BasePlayer* pEntity;
+	Vector mins;
+	Vector maxs;
+
+	Vector Center()
+	{
+		return (mins + maxs) / 2;
+	}
+};
+
 class C_BasePlayer
 {
 public:
 
-	int x;
-	IClientNetworkable* ClientNetworkable;
-
-	/*
-	.text:001E5145 8D 4B 08                                                        lea     ecx, [ebx+8] // ebx is player
-	.text:001E5148 8B 30                                                           mov     esi, [eax]
-	.text:001E514A 8B 01                                                           mov     eax, [ecx]
-	.text:001E514C 8B 40 24                                                        mov     eax, [eax+24h] *(*(ebx + 8) + 0x24)()
-	.text:001E514F FF D0                                                           call    eax
-	.text:001E5151 84 C0                                                           test    al, al
-	.text:001E5153 BA 54 12 B7 00                                                  mov     edx, offset aActive ; "active"
-	.text:001E5158 B9 5C 12 B7 00                                                  mov     ecx, offset aDormant ; "dormant"
-	*/
-
-
-	//virtual Vector GetABSOrigin(); // 10
-	//virtual int GetTeam(); // 88
+	virtual void* func0();
+	virtual void* func1();
+	virtual void* func2();
+	virtual CCollisionProperty* GetCollisionProperties();
 
 	bool IsDormant() const
 	{
