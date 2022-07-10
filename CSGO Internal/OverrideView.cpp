@@ -1,6 +1,8 @@
 #include "OverrideView.h"
 #include <iostream>
 #include "camera.h"
+#include "interfaces.h"
+#include "esp.h"
 
 tOverrideView oOverrideView;
 int __fastcall hkOverrideView(void* pThis, void* _, CViewSetup* view)
@@ -23,6 +25,7 @@ int __fastcall hkOverrideView(void* pThis, void* _, CViewSetup* view)
 	//angles.z = 10;
 
 	Camera::SetupFOV(view);
+
 
 	return ret;
 }
