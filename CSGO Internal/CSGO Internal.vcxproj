@@ -160,6 +160,7 @@
     <ClInclude Include="CreateMove.h" />
     <ClInclude Include="CSetupView.h" />
     <ClInclude Include="CUserCmd.h" />
+    <ClInclude Include="draw.h" />
     <ClInclude Include="EndScene.h" />
     <ClInclude Include="esp.h" />
     <ClInclude Include="ICHLClient.h" />
@@ -212,7 +213,9 @@
     <ClCompile Include="CreateMove.cpp" />
     <ClCompile Include="csgo.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="draw.cpp" />
     <ClCompile Include="EndScene.cpp" />
+    <ClCompile Include="esp.cpp" />
     <ClCompile Include="fovcircle.cpp" />
     <ClCompile Include="fovhelp.cpp" />
     <ClCompile Include="getfovradius.cpp" />

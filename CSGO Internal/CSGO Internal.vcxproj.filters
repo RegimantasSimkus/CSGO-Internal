@@ -61,6 +61,12 @@
     <Filter Include="Source Files\hacks\camera">
       <UniqueIdentifier>{22444823-bbfb-4aa4-87c5-fe9bec1137bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\drawing">
+      <UniqueIdentifier>{cf479fe3-dc28-4831-9774-0cd5632b2ecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\drawing">
+      <UniqueIdentifier>{43de8710-f7fa-43ec-b086-3ea9860e6626}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -213,6 +219,9 @@
     <ClInclude Include="camera.h">
       <Filter>Header Files\hacks</Filter>
     </ClInclude>
+    <ClInclude Include="draw.h">
+      <Filter>Header Files\drawing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -307,6 +316,12 @@
     </ClCompile>
     <ClCompile Include="camera_fov.cpp">
       <Filter>Source Files\hacks\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="esp.cpp">
+      <Filter>Source Files\hacks\esp</Filter>
+    </ClCompile>
+    <ClCompile Include="draw.cpp">
+      <Filter>Source Files\drawing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
