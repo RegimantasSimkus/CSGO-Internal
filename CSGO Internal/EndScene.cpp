@@ -1,6 +1,7 @@
 #include "EndScene.h"
 #include "globals.h"
 #include "menu.h"
+#include "esp.h"
 
 bool bDrawMenu = true;
 WNDPROC oWndProc;
@@ -35,6 +36,10 @@ void Initialize(IDirect3DDevice9* pDevice)
 	bInitialized = true;
 }
 
+// to set the size of the window n' what not
+bool bESPInit = false;
+ImVec2 vecESPSize = {0, 0};
+
 IDirect3DDevice9* g_pDevice = nullptr;
 HRESULT __stdcall hkEndScene(IDirect3DDevice9* pDevice)
 {
@@ -43,19 +48,38 @@ HRESULT __stdcall hkEndScene(IDirect3DDevice9* pDevice)
 
 	if (GetAsyncKeyState(VK_INSERT) & 1) bDrawMenu = !bDrawMenu;
 
-	if (bDrawMenu)
+	ImGui_ImplDX9_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	int scrw, scrh;
+	I::IEngineClient->GetScreenSize(scrw, scrh);
+
+	if (vecESPSize.x != scrw || vecESPSize.y != scrh)
 	{
-		ImGui_ImplDX9_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
+		vecESPSize = { scrw + 20.f, scrh + 20.f };
 
-			DrawMenu();
+		// -10px to fix the clipping of the ESP
+		ImGui::SetNextWindowPos({ -10.f, -10.f });
 
-		ImGui::EndFrame();
-
-		ImGui::Render();
-		ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+		// +20px to compensate
+		ImGui::SetNextWindowSize(vecESPSize);
 	}
+	ImGui::Begin("##ESP_PANEL", (bool*)0, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoInputs);
+	{
+		//I::IEngineClient->WorldToScreenMatrix() = ESP::W2SMatrix;
+
+		ESP::DrawVisuals();
+	}
+	ImGui::End();
+
+	if (bDrawMenu)
+		DrawMenu();
+
+	ImGui::EndFrame();
+
+	ImGui::Render();
+	ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
 
 	return oEndScene(pDevice);
 }
