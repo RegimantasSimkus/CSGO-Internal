@@ -27,6 +27,8 @@ void Colors()
     style.Colors[ImGuiCol_SliderGrab] = ImColor(95, 30, 200);
     style.Colors[ImGuiCol_SliderGrabActive] = ImColor(95, 30, 200);
 
+    style.FramePadding = ImVec2(2, 4.f);
+
     style.GrabRounding = 2;
     style.WindowRounding = 6;
     style.WindowMinSize = ImVec2(515, 320);
@@ -83,7 +85,7 @@ void DrawMenu()
         ImGui::SetCursorPosY(26);
         ImGui::Separator();
 
-        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(6, 0));
+        ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(6, 0));
         for (unsigned int i = 0; i < pages.size(); i++)
         {
             game_data page = pages.at(i);
@@ -102,8 +104,10 @@ void DrawMenu()
 
     ImGui::NextColumn();
 
-    ImGui::BeginChild("##Body");
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(10.f, 10.f));
+    ImGui::BeginChild("##Body", ImVec2(), false, ImGuiWindowFlags_AlwaysUseWindowPadding);
     {
+        ImGui::PopStyleVar();
 
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImColor(0, 0, 0, 0).Value);
         ImGui::SetCursorPosY(6);
@@ -133,9 +137,9 @@ void DrawMenu()
             break;
         }
         }
-
         ImGui::PopStyleColor();
     }
+
     ImGui::EndChild();
     ImGui::PopStyleColor();
     ImGui::End();
