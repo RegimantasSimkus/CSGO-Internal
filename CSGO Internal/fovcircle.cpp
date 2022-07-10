@@ -12,6 +12,5 @@ void ESP::DrawFOVCircle(C_BasePlayer* localplayer)
 	if (Settings::Aim::FOVLength == 0.f && Settings::Aim::FOV != 0.f)
 		Settings::Aim::FOVLength = radius * radius;
 
-	I::ISurface->SetDrawColor(255, 255, 255, 255);
-	I::ISurface->DrawOutlinedCircle(scrw/2, scrh/2, radius, 64);
+	DrawCircle(scrw / 2, scrh / 2, radius, ImColor_White);
 }
