@@ -44,7 +44,7 @@ BOOL WINAPI MainThread(HMODULE hModule)
     oOverrideView = ClientModeShared->Hook<tOverrideView>(reinterpret_cast<PVOID>(&hkOverrideView), 18);
 
 	VMTHookManager* IPanel = new VMTHookManager(*(void***)I::IPanel);
-	oPaintTraverse = IPanel->Hook<tPaintTraverse>(reinterpret_cast<PVOID>(&hkPaintTraverse), 41);
+	//oPaintTraverse = IPanel->Hook<tPaintTraverse>(reinterpret_cast<PVOID>(&hkPaintTraverse), 41);
 
 
     void* pShaderBaseClass = **(void***)(Utils::FindSignature("shaderapidx9.dll", "\xA1\x0\x0\x0\x0\x50\x8B\x08\xFF\x51\x0C", "x????xxxxxx") + 1);
@@ -55,7 +55,6 @@ BOOL WINAPI MainThread(HMODULE hModule)
 
     void* drawText = (*(void***)(void*)I::ISurface)[29];
 
-    std::cout << "drawtext: " << drawText << "\n";
 
     MH_EnableHook(MH_ALL_HOOKS);
 
