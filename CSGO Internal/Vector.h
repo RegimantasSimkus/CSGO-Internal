@@ -63,6 +63,11 @@ public:
 		return *this;
 	}
 
+	Vector Copy()
+	{
+		return { x, y, z };
+	}
+
 	Vector& Angle()
 	{
 

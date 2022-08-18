@@ -2,6 +2,9 @@
 
 void Aim::RecoilControl(CUserCmd* cmd, C_BasePlayer* localplayer, Vector& angles, bool isAimbot)
 {
+	if (!Settings::Aim::RecoilControl)
+		return;
+
 	static Vector prevPunch;
 
 	int shotsFired = localplayer->GetShotsFired();

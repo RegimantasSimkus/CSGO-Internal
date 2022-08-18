@@ -1,5 +1,7 @@
 #include "aim.h"
 
+#include <iostream>
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h> // getasynckeystate
 
@@ -8,6 +10,10 @@
 
 Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 {
+
+	// get our backtrack data
+	Backtrack(cmd, localplayer);
+
 	if (!Settings::Aim::Enabled || !(GetAsyncKeyState(VK_LMENU)))
 		RETRCV();
 
@@ -23,7 +29,11 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 	float lowestHypot = 0.f;
 	Vector targetHeadPos;
 	Vector targetHeadScreenPos;
-	for (int i = 0; i < g_Globals->maxClients; i++)
+	int targetIndex = 0;
+
+
+
+	for (int i = 1; i < g_Globals->maxClients; i++)
 	{
 		C_BasePlayer* player = I::IEntityList->GetClientEntity(i);
 		if (!player || player->GetTeam() == localTeam || player->IsDormant() || player->GetHealth() <= 0)
@@ -40,8 +50,6 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 		if (I::IDebugOverlay->ScreenPosition(headPos, screenPos))
 			continue;
 
-
-
 		float diffX = screenPos.x - cx;
 		float diffY = screenPos.y - cy;
 
@@ -55,6 +63,7 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 			lowestHypot = hypotenuse;
 			Target = player;
 			targetHeadPos = headPos;
+			targetIndex = i;
 			targetHeadScreenPos = screenPos;
 		}
 	}
@@ -62,8 +71,25 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 	if (!Target)
 		RETRCV();
 
+
+
+	backtrack_t* bestBacktrack = nullptr;
+	if (Settings::Aim::Backtrack)
+	{
+		lowestHypot = 0.f;
+		std::vector<backtrack_t>& backtrack = backtrackData[targetIndex];
+		bestBacktrack = &backtrack.at(backtrack.size()-1);
+	}
+
 	// where we shoot from :D
 	Vector localEyePos = localplayer->GetOrigin().Add(localplayer->GetViewOffset());
+
+
+	if (bestBacktrack != nullptr)
+	{
+		targetHeadPos = bestBacktrack->headPos;
+		cmd->tick_count = bestBacktrack->tick;
+	}
 
 	Vector delta = { targetHeadPos.x - localEyePos.x, targetHeadPos.y - localEyePos.y, targetHeadPos.z - localEyePos.z };
 

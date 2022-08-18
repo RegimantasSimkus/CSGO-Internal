@@ -222,6 +222,9 @@
     <ClInclude Include="draw.h">
       <Filter>Header Files\drawing</Filter>
     </ClInclude>
+    <ClInclude Include="IEngineTrace.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -322,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="draw.cpp">
       <Filter>Source Files\drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="backtrack.cpp">
+      <Filter>Source Files\hacks\aim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

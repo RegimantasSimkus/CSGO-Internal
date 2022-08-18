@@ -7,6 +7,8 @@ namespace Settings
 		extern bool Enabled;
 		extern float FOV;
 		extern float FOVLength; // The length of the hypotenuse/size of radius
+		extern bool RecoilControl;
+		extern bool Backtrack;
 	}
 
 	namespace ESP

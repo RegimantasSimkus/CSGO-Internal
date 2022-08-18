@@ -122,6 +122,10 @@ void DrawMenu()
                 float rad = ESP::GetFOVRadius(Settings::Aim::FOV);
                 Settings::Aim::FOVLength = rad * rad;
             }
+
+            ImGui::Checkbox("Recoil Control", &Settings::Aim::RecoilControl);
+            ImGui::Checkbox("Backtrack", &Settings::Aim::Backtrack);
+
             break;
         }
         case PAGE_ESP:
