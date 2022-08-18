@@ -10,6 +10,7 @@
 #include "IVEngineClient.h"
 #include "IDebugOverlay.h"
 #include "ICHLClient.h"
+#include "IEngineTrace.h"
 
 #ifdef _DEBUG
 #include <vector>
@@ -62,4 +63,5 @@ namespace I
 	static ::IPanel* IPanel = CreateInterface<::IPanel>("vgui2.dll", "VGUI_Panel009");
 	static ::IEngineVGui* IEngineVGUI = CreateInterface<::IEngineVGui>("engine.dll", "VEngineVGui001");
 	static ::CIVDebugOverlay* IDebugOverlay = CreateInterface<::CIVDebugOverlay>("engine.dll", "VDebugOverlay004");
+	static ::IEngineTrace* EngineTrace = CreateInterface<::IEngineTrace>("engine.dll", "EngineTraceClient004");
 }
