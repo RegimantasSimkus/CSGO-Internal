@@ -3,6 +3,7 @@
 #include "C_BasePlayer.h"
 #include "csgo.h"
 #include "CUserCmd.h"
+#include "settings.h"
 
 namespace Movement
 {
