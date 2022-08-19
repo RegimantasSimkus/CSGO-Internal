@@ -8,6 +8,29 @@
 // return recoil control view
 #define RETRCV() { RecoilControl(cmd, localplayer, cmd->viewangles); return cmd->viewangles; }
 
+class ITraceFilterIgnoreLocalPlayer
+{
+public:
+	virtual bool ShouldHitEntity(C_BasePlayer* ent, int mask)
+	{
+		if (!ent)
+			return false;
+
+		if (ent->GetHealth() < 0)
+			return false;
+
+		if (ent == I::IEntityList->GetClientEntity(I::IEngineClient->GetLocalPlayer()))
+			return false;
+
+		return true;
+	}
+
+	virtual TraceType_t	GetTraceType() const
+	{
+		return TRACE_EVERYTHING;
+	}
+};
+
 Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 {
 
@@ -72,17 +95,28 @@ Vector& Aim::Aimbot(CUserCmd* cmd, C_BasePlayer* localplayer)
 		RETRCV();
 
 
+	// where we shoot from :D
+	Vector localEyePos = localplayer->GetOrigin().Add(localplayer->GetViewOffset());
 
 	backtrack_t* bestBacktrack = nullptr;
 	if (Settings::Aim::Backtrack)
 	{
 		lowestHypot = 0.f;
 		std::vector<backtrack_t>& backtrack = backtrackData[targetIndex];
+		//for (int i = 0; i < backtrack.size(); i++)
+		//{
+		//	backtrack_t& data = backtrack.at(i);
+
+		//	Ray_t ray;
+		//	ray.Init(localEyePos, data.headPos);
+
+		//	trace_t trace;
+		//	ITraceFilterIgnoreLocalPlayer* filter = new ITraceFilterIgnoreLocalPlayer();
+		//	I::EngineTrace->TraceRay(ray, MASK_SHOT_HULL, (ITraceFilter*)filter, &trace);
+		//}
 		bestBacktrack = &backtrack.at(backtrack.size()-1);
 	}
 
-	// where we shoot from :D
-	Vector localEyePos = localplayer->GetOrigin().Add(localplayer->GetViewOffset());
 
 
 	if (bestBacktrack != nullptr)

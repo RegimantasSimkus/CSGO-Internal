@@ -7,7 +7,7 @@ void Aim::Backtrack(CUserCmd* cmd, C_BasePlayer* localplayer)
 	//Vector localpos = localplayer->GetOrigin() + localplayer->GetViewOffset();
 	for (int i = 1; i < g_Globals->maxClients; i++)
 	{
-		if (backtrackData[i].size() > 8)
+		if (backtrackData[i].size() > 4)
 		{
 			backtrackData[i].pop_back();
 			continue;
