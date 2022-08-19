@@ -26,6 +26,6 @@ int __fastcall hkOverrideView(void* pThis, void* _, CViewSetup* view)
 
 	Camera::SetupFOV(view);
 
-
+	Settings::Camera::ViewSetup = view;
 	return ret;
 }
