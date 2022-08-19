@@ -18,9 +18,9 @@ void ESP::DrawVisuals()
 		if (!player)
 			continue;
 		
-		player_info_t pInfo;
-		I::IEngineClient->GetPlayerInfo(i, &pInfo);
+		player_info_t info;
+		I::IEngineClient->GetPlayerInfo(i, &info);
 
-		DrawPlayer(player, localplayer, pInfo);
+		DrawPlayer(player, localplayer, info);
 	}
 }
