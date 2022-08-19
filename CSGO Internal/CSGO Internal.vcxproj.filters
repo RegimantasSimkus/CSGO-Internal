@@ -67,6 +67,12 @@
     <Filter Include="Source Files\drawing">
       <UniqueIdentifier>{43de8710-f7fa-43ec-b086-3ea9860e6626}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\debugconsole">
+      <UniqueIdentifier>{d56f3963-020b-4926-abab-b3108be51cc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\debugconsole">
+      <UniqueIdentifier>{c44909fd-bf2d-48e0-8193-dd74259a4295}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -225,6 +231,9 @@
     <ClInclude Include="IEngineTrace.h">
       <Filter>Header Files\sdk</Filter>
     </ClInclude>
+    <ClInclude Include="consolecommand.h">
+      <Filter>Header Files\debugconsole</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -328,6 +337,12 @@
     </ClCompile>
     <ClCompile Include="backtrack.cpp">
       <Filter>Source Files\hacks\aim</Filter>
+    </ClCompile>
+    <ClCompile Include="consolecommand.cpp">
+      <Filter>Source Files\debugconsole</Filter>
+    </ClCompile>
+    <ClCompile Include="consolecommands.cpp">
+      <Filter>Source Files\debugconsole</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

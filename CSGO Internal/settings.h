@@ -1,4 +1,9 @@
 #pragma once
+#include <string>
+#include <vector>
+#include <ctime>
+
+class CViewSetup;
 
 namespace Settings
 {
@@ -20,5 +25,28 @@ namespace Settings
 	{
 		extern bool Enabled;
 		extern float FOV;
+		extern CViewSetup* ViewSetup;
+	}
+
+	namespace Movement
+	{
+		extern bool BunnyHop;
+	}
+
+	namespace Misc
+	{
+		namespace Developer
+		{
+			struct log_t
+			{
+				std::string log;
+				time_t itime;
+				const char* szTime;
+			};
+			extern void PushLog(std::string log);
+			extern std::vector<log_t> Logs;
+			extern bool DebugConsole;
+			extern char InputBuff[0xFF];
+		}
 	}
 }

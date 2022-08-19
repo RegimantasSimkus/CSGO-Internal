@@ -106,6 +106,21 @@ namespace DT
 		return 0;
 	}
 
+	struct netvar_t
+	{
+		const char* szClass;
+		const char* szNetVar;
+		uintptr_t offset;
+	};
+
+	struct netvar_class_t
+	{
+		const char* szClass;
+		std::vector<netvar_t> netvars;
+	};
+
+	static std::vector<netvar_class_t> NetvarList;
+
 	static uintptr_t GetNetVar(const char* szClass, const char* szNetVar)
 	{
 		static ClientClass* classes = I::CHLClient->GetAllClasses();
@@ -115,7 +130,31 @@ namespace DT
 			{
 				unsigned int offset = GetOffset(pCur->m_pRecvTable, szClass, szNetVar);
 				if (offset)
+				{
+					// a pointer to the netvar class vector
+					std::vector<netvar_t>* list = nullptr;
+
+					bool bFound = false;
+					for (int i = 0; i < NetvarList.size(); i++)
+					{
+						if (!strcmp(NetvarList.at(i).szClass, szClass))
+						{
+							bFound = true;
+							list = &NetvarList.at(i).netvars;
+							break;
+						}
+					}
+
+					if (!bFound)
+					{
+						NetvarList.push_back({ szClass });
+						list = &NetvarList.at(NetvarList.size()-1).netvars;
+					}
+
+					list->push_back({ szClass, szNetVar, offset });
+
 					return offset;
+				}
 			}
 		}
 

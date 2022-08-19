@@ -5,6 +5,7 @@
 #include "csgo.h"
 #include "math.h"
 #include <TlHelp32.h>
+#include "consolecommand.h"
 
 FILE* file;
 void Cleanup(HMODULE hModule)
@@ -22,6 +23,8 @@ HWND g_hWnd = 0;
 
 BOOL WINAPI MainThread(HMODULE hModule)
 {
+    ConsoleCommands::_POPULATE_CONSOLE_COMMANDS();
+
 	I::PrintList();
 
     g_hWnd = FindWindowA(NULL, "Counter-Strike: Global Offensive - Direct3D 9");

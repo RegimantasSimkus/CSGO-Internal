@@ -18,5 +18,29 @@ namespace Settings
 	{
 		float FOV = 75.f;
 		bool Enabled = false;
+		CViewSetup* ViewSetup = nullptr;
+	}
+
+	namespace Movement
+	{
+		bool BunnyHop = false;
+	}
+
+	namespace Misc
+	{
+		namespace Developer
+		{
+
+			std::vector<log_t> Logs;
+			void PushLog(std::string log)
+			{
+				time_t t = time(NULL);
+				
+
+				Logs.push_back({log, time(NULL), std::to_string(t).c_str()});
+			}
+			bool DebugConsole = false;
+			char InputBuff[0xFF];
+		}
 	}
 }

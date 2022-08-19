@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "settings.h"
+#include "consolecommand.h"
 
 // For GetFOVRadius
 #include "esp.h"
@@ -56,6 +57,91 @@ std::vector<game_data> pages = {
     {"Camera", PAGE_CAMERA}
 };
 
+std::vector<std::string> Split(std::string str, const char* split)
+{
+    size_t len = strlen(split);
+    std::vector<std::string> vec;
+
+    std::string part = "";
+    for (int i = 0; i < str.length(); i++)
+    {
+        bool found = true;
+        for (int c = 0; c < len; c++)
+        {
+            if (!(str[i + c] == split[c]))
+            {
+                found = false;
+                break;
+
+            }
+        }
+        if (found)
+        {
+            vec.push_back(part);
+            part = "";
+            i += len - 1;
+        }
+        else
+        {
+            part += str[i];
+        }
+    }
+    if (part.length() != 0)
+        vec.push_back(part);
+
+    return vec;
+}
+
+void HandleDebugInput(char buff[])
+{
+    std::string str = std::string(buff);
+    buff[0] = '\0'; // empty buffer
+
+    Settings::Misc::Developer::PushLog(std::string("> ").append(str));
+
+    std::vector<std::string> parameters = Split(str, " ");
+    
+    std::string& command = parameters.at(0);
+    
+    if (!g_ConsoleCommandManager->RunCommand(command.c_str(), parameters))
+        Settings::Misc::Developer::PushLog(std::string("[ERROR] command '").append(command).append("' not found."));
+
+    //if (command == "clear")
+    //    Settings::Misc::Developer::Logs.clear();
+    //else if (command == "netvar")
+    //{
+    //    if (parameters.size() <= 1)
+    //    {
+    //        Settings::Misc::Developer::PushLog("Missing argument #1: Expected a classname. Choose one from the following:");
+    //        for (int i = DT::NetvarList.size()-1; i >= 0; i--)
+    //        {
+    //            Settings::Misc::Developer::PushLog(std::string("    ").append(DT::NetvarList.at(i).szClass));
+    //        }
+    //        return;
+    //    }
+    //    if (parameters.size() == 2)
+    //    {
+    //        std::string& table = parameters.at(1);
+    //        char* szTable = toLower(table.c_str());
+    //        for (int i = DT::NetvarList.size() - 1; i >= 0; i--)
+    //        {
+    //            char* szLower = toLower(DT::NetvarList.at(i).szClass);
+    //            if (!strcmp(szTable, "*") || !strcmp(szTable, szLower))
+    //            {
+    //                Settings::Misc::Developer::PushLog(std::string(DT::NetvarList.at(i).szClass).append(":"));
+    //                for (int n = 0; n < DT::NetvarList.at(i).netvars.size(); n++)
+    //                {
+    //                    Settings::Misc::Developer::PushLog(std::string("    ").append(DT::NetvarList.at(i).netvars.at(n).szNetVar).append("  ->  ").append(std::to_string((unsigned int)DT::NetvarList.at(i).netvars.at(n).offset)));
+    //                }
+    //            }
+    //            delete[] szLower;
+    //        }
+    //        delete[] szTable;
+    //    }
+
+    //}
+}
+
 bool initialized = false;
 void DrawMenu()
 {
@@ -66,8 +152,44 @@ void DrawMenu()
         return;
     }
 
+    if (ImGui::BeginMainMenuBar())
+    {
+        if (ImGui::BeginMenu("Developer"))
+        {
+            ImGui::MenuItem("Debug Console", NULL, &Settings::Misc::Developer::DebugConsole);
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMainMenuBar();
+    }
+
+    if (Settings::Misc::Developer::DebugConsole)
+    {
+
+        ImGui::Begin("Debug Console", &Settings::Misc::Developer::DebugConsole, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings);
+
+        ImVec2 size = ImGui::GetContentRegionAvail();
+        size.y -= 25;
+        ImGui::BeginChild("##DEVELOPER_CONSOLE_BODY", size, true);
+        {
+            for (int i = 0; i < Settings::Misc::Developer::Logs.size(); i++)
+            {
+                Settings::Misc::Developer::log_t& log = Settings::Misc::Developer::Logs.at(i);
+                ImGui::Text("%s", log.log.c_str());
+            }
+        }
+        ImGui::EndChild();
+
+        ImGui::PushItemWidth(size.x);
+        if (ImGui::InputText("##DEVELOPER_CONSOLE_INPUT", Settings::Misc::Developer::InputBuff, 0xFF, ImGuiInputTextFlags_EnterReturnsTrue))
+        {
+            HandleDebugInput(Settings::Misc::Developer::InputBuff);
+        }
+        ImGui::End();
+    }
+
     static PAGE activePage = PAGE_AIM;
-    ImGui::Begin("##Frame", 0, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);                          // Create a window called "Hello, world!" and append into it.
+    ImGui::Begin("##Frame", 0, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
 
     ImGui::PushStyleColor(ImGuiCol_Border, ImColor(0, 0, 0, 255).Value);
 
@@ -131,6 +253,11 @@ void DrawMenu()
         case PAGE_ESP:
         {
             ImGui::Checkbox("Enable", &Settings::ESP::Enabled);
+            break;
+        }
+        case PAGE_MOVEMENT:
+        {
+            ImGui::Checkbox("BunnyHop", &Settings::Movement::BunnyHop);
             break;
         }
         case PAGE_CAMERA:
