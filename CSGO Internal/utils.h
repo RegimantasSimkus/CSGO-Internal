@@ -6,7 +6,7 @@
 #include <Windows.h>
 #include <TlHelp32.h>
 #include <Psapi.h>
-#include <initializer_list>
+#include <sstream>
 
 namespace Utils
 {
@@ -50,6 +50,33 @@ namespace Utils
 		return 0;
 	}
 
+	static std::string HexByte(unsigned char byte)
+	{
+		static const char* bytes = "0123456789ABCDEF";
+
+		int big = byte / 16;
+		int smol = byte - (big * 16);
+
+		std::stringstream str;
+		str << bytes[big];
+		str << bytes[smol];
+		return str.str();
+	}
+
+	static std::string IntToHex(unsigned int num)
+	{
+		std::string hex = "";
+		
+		while (num > 0)
+		{
+			hex = HexByte(num & 0xFF) + hex;
+			num = num >> 8;
+		}
+		hex = "0x" + hex;
+
+		return hex;
+	}
+
 	template <typename T = void*>
 	static T GetVFunc(void* pThis, int index)
 	{
@@ -67,5 +94,6 @@ namespace Utils
 		return fnFunc(pThis, args...);
 	}
 }
+
 
 #endif
