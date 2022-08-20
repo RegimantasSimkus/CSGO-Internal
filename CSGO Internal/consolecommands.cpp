@@ -2,6 +2,7 @@
 #include "settings.h"
 #include "netvars.h"
 #include "csgo.h"
+#include "utils.h"
 
 char* toLower(const char* str)
 {
@@ -58,7 +59,7 @@ namespace ConsoleCommands
                     Settings::Misc::Developer::PushLog(std::string(DT::NetvarList.at(i).szClass).append(":"));
                     for (int n = 0; n < DT::NetvarList.at(i).netvars.size(); n++)
                     {
-                        Settings::Misc::Developer::PushLog(std::string("    ").append(DT::NetvarList.at(i).netvars.at(n).szNetVar).append("  ->  ").append(std::to_string((unsigned int)DT::NetvarList.at(i).netvars.at(n).offset)));
+                        Settings::Misc::Developer::PushLog(std::string("    ").append(DT::NetvarList.at(i).netvars.at(n).szNetVar).append("  ->  ").append(Utils::IntToHex(DT::NetvarList.at(i).netvars.at(n).offset)));
                     }
                 }
                 delete[] szLower;
@@ -78,7 +79,7 @@ namespace ConsoleCommands
                 {
                     player_info_t info;
                     I::IEngineClient->GetPlayerInfo(i, &info);                                                         // should create myself a function to convert a number to hex, would come in very handy
-                    Settings::Misc::Developer::PushLog(std::string(std::to_string(i)).append(") ").append(info.name)); //.append(" [").append(std::to_string((long double)((uintptr_t)ply))).append("]"));
+                    Settings::Misc::Developer::PushLog(std::string(std::to_string(i)).append(") ").append(info.name).append(" (").append(Utils::IntToHex((uintptr_t)ply)).append(")")); //.append(" [").append(std::to_string((long double)((uintptr_t)ply))).append("]"));
                 }
             }
         }

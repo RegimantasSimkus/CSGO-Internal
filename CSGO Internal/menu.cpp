@@ -106,40 +106,6 @@ void HandleDebugInput(char buff[])
     if (!g_ConsoleCommandManager->RunCommand(command.c_str(), parameters))
         Settings::Misc::Developer::PushLog(std::string("[ERROR] command '").append(command).append("' not found."));
 
-    //if (command == "clear")
-    //    Settings::Misc::Developer::Logs.clear();
-    //else if (command == "netvar")
-    //{
-    //    if (parameters.size() <= 1)
-    //    {
-    //        Settings::Misc::Developer::PushLog("Missing argument #1: Expected a classname. Choose one from the following:");
-    //        for (int i = DT::NetvarList.size()-1; i >= 0; i--)
-    //        {
-    //            Settings::Misc::Developer::PushLog(std::string("    ").append(DT::NetvarList.at(i).szClass));
-    //        }
-    //        return;
-    //    }
-    //    if (parameters.size() == 2)
-    //    {
-    //        std::string& table = parameters.at(1);
-    //        char* szTable = toLower(table.c_str());
-    //        for (int i = DT::NetvarList.size() - 1; i >= 0; i--)
-    //        {
-    //            char* szLower = toLower(DT::NetvarList.at(i).szClass);
-    //            if (!strcmp(szTable, "*") || !strcmp(szTable, szLower))
-    //            {
-    //                Settings::Misc::Developer::PushLog(std::string(DT::NetvarList.at(i).szClass).append(":"));
-    //                for (int n = 0; n < DT::NetvarList.at(i).netvars.size(); n++)
-    //                {
-    //                    Settings::Misc::Developer::PushLog(std::string("    ").append(DT::NetvarList.at(i).netvars.at(n).szNetVar).append("  ->  ").append(std::to_string((unsigned int)DT::NetvarList.at(i).netvars.at(n).offset)));
-    //                }
-    //            }
-    //            delete[] szLower;
-    //        }
-    //        delete[] szTable;
-    //    }
-
-    //}
 }
 
 bool initialized = false;
