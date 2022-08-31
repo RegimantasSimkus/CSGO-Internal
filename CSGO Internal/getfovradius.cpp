@@ -1,4 +1,5 @@
 #include "esp.h"
+#include "CSetupView.h"
 
 float ESP::GetFOVRadius(float& fov, C_BasePlayer* localplayer)
 {
@@ -8,7 +9,7 @@ float ESP::GetFOVRadius(float& fov, C_BasePlayer* localplayer)
 	if (!localplayer)
 		return 0.f;
 
-	float segSize = ((float)scrw / (float)localplayer->GetFOV());
+	float segSize = ((float)scrw / ((Settings::Camera::ViewSetup != nullptr) ? Settings::Camera::ViewSetup->fov : localplayer->GetFOV()));
 	
 	return (fov * segSize)/2.f;
 }
