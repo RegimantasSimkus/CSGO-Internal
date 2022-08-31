@@ -10,12 +10,39 @@ char* toLower(const char* str)
     char* buff = new char[len + 1];
     buff[len] = '\0';
 
-    for (int i = 0; i < len; i++)
+    for (size_t i = 0; i < len; i++)
     {
         buff[i] = std::tolower(str[i]);
     }
 
     return buff;
+}
+
+// we look for the needle within the haystack
+bool stringContains(const char* haystack, const char* needle)
+{
+    size_t len = strlen(haystack);
+    size_t needleLen = strlen(needle);
+
+    if (needleLen > len)
+        return false;
+
+    bool bFound = false;
+    for (size_t i = 0; i < len - (needleLen - 1); i++)
+    {
+        bFound = true;
+        for (size_t j = 0; j < needleLen; j++)
+        {
+            if (haystack[i + j] != needle[j])
+            {
+                bFound = false;
+                break;
+            }
+        }
+        if (bFound)
+            return true;
+    }
+    return false;
 }
 
 namespace ConsoleCommands
@@ -78,10 +105,36 @@ namespace ConsoleCommands
                 if (ply)
                 {
                     player_info_t info;
-                    I::IEngineClient->GetPlayerInfo(i, &info);                                                         // should create myself a function to convert a number to hex, would come in very handy
-                    Settings::Misc::Developer::PushLog(std::string(std::to_string(i)).append(") ").append(info.name).append(" (").append(Utils::IntToHex((uintptr_t)ply)).append(")")); //.append(" [").append(std::to_string((long double)((uintptr_t)ply))).append("]"));
+                    I::IEngineClient->GetPlayerInfo(i, &info);
+                    Settings::Misc::Developer::PushLog(std::string(std::to_string(i)).append(") ").append(info.name).append(" (").append(Utils::IntToHex((uintptr_t)ply)).append(")"));
                 }
             }
+        }
+        else
+        {
+            std::string& name = arguments.at(1);
+
+            char* szName = toLower(name.c_str());
+            for (int i = 1; i < g_Globals->maxClients; i++)
+            {
+                C_BasePlayer* ply = I::IEntityList->GetClientEntity(i);
+                if (ply)
+                {
+                    player_info_t info;
+                    I::IEngineClient->GetPlayerInfo(i, &info);
+                    
+                    char* szInfoName = toLower(info.name);
+                    std::cout << "stringContains: (" << szInfoName << ") (" << szName << ") " << stringContains(szInfoName, szName) << ")\n";
+                    if (stringContains(szInfoName, szName))
+                    {
+                        Settings::Misc::Developer::PushLog(std::string(std::to_string(i)).append(") ").append(info.name).append(" (").append(Utils::IntToHex((uintptr_t)ply)).append(")"));
+                    }
+
+                    delete[] szInfoName;
+                }
+            }
+
+            delete[] szName;
         }
     }
 
@@ -90,7 +143,7 @@ namespace ConsoleCommands
         g_ConsoleCommandManager->AddConsoleCommand("help", Help, "Prints out a list of every available console command.");
         g_ConsoleCommandManager->AddConsoleCommand("clear", Clear, "Clears the console.");
         g_ConsoleCommandManager->AddConsoleCommand("netvar", Netvar, "Shows a list of every netvar & offset. Use '*' as the first argument to display every netvar.");
-        g_ConsoleCommandManager->AddConsoleCommand("getplayer", GetPlayer);
+        g_ConsoleCommandManager->AddConsoleCommand("getplayer", GetPlayer, "Get details about players in your game.");
     }
 }
 

@@ -97,11 +97,24 @@ void HandleDebugInput(char buff[])
     std::string str = std::string(buff);
     buff[0] = '\0'; // empty buffer
 
-    Settings::Misc::Developer::PushLog(std::string("> ").append(str));
-
     std::vector<std::string> parameters = Split(str, " ");
     
     std::string& command = parameters.at(0);
+
+    std::string args = "[";
+    for (int i = 0; i < parameters.size(); i++)
+    {
+        std::string& arg = parameters.at(i);
+        if (i > 0)
+            args.append(",");
+
+        args.append("(");
+        args.append(arg);
+        args.append(")");
+    }
+    args.append("]");
+
+    Settings::Misc::Developer::PushLog(std::string("> ").append(str).append(" ").append(args));
     
     if (!g_ConsoleCommandManager->RunCommand(command.c_str(), parameters))
         Settings::Misc::Developer::PushLog(std::string("[ERROR] command '").append(command).append("' not found."));
